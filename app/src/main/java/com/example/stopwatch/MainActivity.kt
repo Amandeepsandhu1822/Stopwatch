@@ -8,8 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.stopwatch.R.id
 import com.example.stopwatch.R.id.*
-import com.example.stopwatch.R.id.resetButton as idResetButton
-
 class MainActivity : AppCompatActivity() {
     // variables
     private lateinit var chronometer: Chronometer // chronometer is a stopwatch type of thing
@@ -17,9 +15,9 @@ class MainActivity : AppCompatActivity() {
     private var offset : Long = 0 // start time for the stopwatch
 
     // Key string for bundle
-    private val OFFSET_KEY = "offset"
-    private val RUNNING_KEY = "running"
-    private val BASE_KEY = "base"
+     val OFFSET_KEY = "offset"
+     val RUNNING_KEY = "running"
+     val BASE_KEY = "base"
 
 
 
@@ -65,8 +63,7 @@ class MainActivity : AppCompatActivity() {
                 chronometer.base = SystemClock.elapsedRealtime() + offset
             }else{
                 showWarningAlert(
-                    "You can not increase the time when timer is running",
-                    "alert!"
+                    "You can not increase the time while timer is running"
                 )   
 
             }
@@ -79,8 +76,7 @@ class MainActivity : AppCompatActivity() {
                 chronometer.base = SystemClock.elapsedRealtime() + offset
             }else{
                 showWarningAlert(
-                    "You can not increase the time when timer is running",
-                    "alert!"
+                    "You can not increase the time when timer is running"
                 )
             }
         }
@@ -130,12 +126,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private fun showWarningAlert(message: String, title: String) {
+    fun showWarningAlert(message: String) {
         val dialogue = AlertDialog.Builder(this)
-        dialogue.setMessage(message)
-        dialogue.setCancelable(true)
+        val message1 = dialogue.setMessage(message)
         val alert = dialogue.create()
-        alert.setTitle(title)
+   
+        alert.setTitle(alert)
         alert.show()
     }
 
@@ -184,6 +180,11 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 }
+
+
+
+
+
 
 
 
