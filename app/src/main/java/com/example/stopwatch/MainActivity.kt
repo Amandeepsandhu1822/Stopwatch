@@ -6,8 +6,6 @@ import android.widget.Button
 import android.widget.Chronometer
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.stopwatch.R.id
-import com.example.stopwatch.R.id.*
 class MainActivity : AppCompatActivity() {
     // variables
     private lateinit var chronometer: Chronometer // chronometer is a stopwatch type of thing
@@ -15,9 +13,9 @@ class MainActivity : AppCompatActivity() {
     private var offset : Long = 0 // start time for the stopwatch
 
     // Key string for bundle
-     val OFFSET_KEY = "offset"
-     val RUNNING_KEY = "running"
-     val BASE_KEY = "base"
+    private val OFFSET_KEY = "offset"
+     private val RUNNING_KEY = "running"
+     private val BASE_KEY = "base"
 
 
 
@@ -26,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        chronometer = findViewById<Chronometer>(id.chronometer)
+        chronometer = findViewById<Chronometer>(R.id.chronometer)
 
         // check on the running chronometer is it going -ve
         chronometer.setOnChronometerTickListener {
@@ -53,35 +51,38 @@ class MainActivity : AppCompatActivity() {
                 setBaseTime()
             }
         }
-        val addfiveSecButton = findViewById<Button>(addfiveButton)
-        val addtenSecButton = findViewById<Button> (addtenButton)
+        val addOneSecButton = findViewById<Button>(R.id.addOneButton)
+        val addTenSecButton = findViewById<Button>(R.id.addTenButton)
         // add one minute button function
-        addfiveSecButton.setOnClickListener {
+        addOneSecButton.setOnClickListener {
 
             if(!running) {
                 offset += 2000
                 chronometer.base = SystemClock.elapsedRealtime() + offset
             }else{
                 showWarningAlert(
-                    "You can not increase the time while timer is running"
+                    "You can not increase the time while timer is running",
+                    "Warning!"
                 )   
 
             }
 
         }
-        // add five second button
-        addtenSecButton.setOnClickListener {
+        // add ten second button
+        addTenSecButton.setOnClickListener {
             if (!running){
                 offset += 6000
                 chronometer.base = SystemClock.elapsedRealtime() + offset
             }else{
                 showWarningAlert(
-                    "You can not increase the time when timer is running"
+                    "You can not increase the time when timer is running",
+                    "Warning!"
+
                 )
             }
         }
         // start button
-        findViewById<Button>(startButton).setOnClickListener {
+        findViewById<Button>(R.id.startButton).setOnClickListener {
 
             if (!running) {
                 if (isGoingNegative()){
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         }
         //stop button function
         val stopButton = 0
-        findViewById<Button>(stopButton).setOnClickListener {
+        findViewById<Button>(R.id.stopButton).setOnClickListener {
             if (running) {
                 //save offset
 //                saveOffset()
@@ -113,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
         //reset button function
         val resetButton = 0
-        findViewById<Button>(resetButton).setOnClickListener {
+        findViewById<Button>(R.id.resetButton).setOnClickListener {
             //set offset to zero
             offset = 0
             //reset stop watch to 0
@@ -126,39 +127,39 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun showWarningAlert(message: String) {
+    private fun showWarningAlert(message: String, s: String) {
         val dialogue = AlertDialog.Builder(this)
-        val message1 = dialogue.setMessage(message)
+        dialogue.setMessage(message)
+        dialogue.setCancelable(true)
         val alert = dialogue.create()
-   
-        alert.setTitle(alert)
+        alert.setTitle(title)
         alert.show()
     }
 
 
 
-    override fun onSaveInstanceState(savedInstanceState: Bundle){
-        savedInstanceState.putLong(OFFSET_KEY, offset)
-        savedInstanceState.putBoolean(RUNNING_KEY,running)
-        savedInstanceState.putLong(BASE_KEY,chronometer.base)
-        super.onSaveInstanceState(savedInstanceState)
-    }
-    override fun onPause() {
-        super.onPause()
-        if(running) {
-            saveOffset()
-            chronometer.stop()
-        }
-    }
-     override fun onResume() {
-        super.onResume()
-        if(running) {
-            setBaseTime()
-            chronometer.start()
-            offset = 0
-
-        }
-    }
+//    override fun onSaveInstanceState(savedInstanceState: Bundle){
+//        savedInstanceState.putLong(OFFSET_KEY, offset)
+//        savedInstanceState.putBoolean(RUNNING_KEY,running)
+//        savedInstanceState.putLong(BASE_KEY,chronometer.base)
+//        super.onSaveInstanceState(savedInstanceState)
+//    }
+//    override fun onPause() {
+//        super.onPause()
+//        if(running) {
+//            saveOffset()
+//            chronometer.stop()
+//        }
+//    }
+//     override fun onResume() {
+//        super.onResume()
+//        if(running) {
+//            setBaseTime()
+//            chronometer.start()
+//            offset = 0
+//
+//        }
+//    }
 
     private fun saveOffset() {
         offset = SystemClock.elapsedRealtime() - chronometer.base
@@ -180,6 +181,8 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 }
+
+
 
 
 

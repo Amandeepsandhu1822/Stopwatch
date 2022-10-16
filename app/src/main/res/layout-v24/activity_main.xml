@@ -22,7 +22,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/addOneBtn"
+            android:id="@+id/addOneButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+1"
@@ -37,32 +37,31 @@
         android:countDown="true"/>
 
         <Button
-            android:id="@+id/addFiveBtn"
+            android:id="@+id/addTenButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/_5"/>
+            android:text="+10"/>
 
     </LinearLayout>
 
         <Button
-        android:id="@+id/startBtn"
+        android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start"/>
 
         <Button
-        android:id="@+id/stopBtn"
+        android:id="@+id/stopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="stop" />
 
         <Button
-            android:id="@+id/resetBtn"
+            android:id="@+id/resetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
             android:text="@string/reset"/>
-
 
 </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

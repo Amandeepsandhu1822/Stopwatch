@@ -22,10 +22,10 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/addfiveButton"
+            android:id="@+id/addOneButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+5"
+            android:text="+1"
             android:layout_marginEnd="8dp" />
 
     <Chronometer
@@ -37,7 +37,7 @@
         android:countDown="true"/>
 
         <Button
-            android:id="@+id/addtenButton"
+            android:id="@+id/addTenButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
